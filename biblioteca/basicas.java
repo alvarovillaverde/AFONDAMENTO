@@ -14,7 +14,6 @@ public class basicas {
                     array[i][j] = sc.nextInt();
                 }
             }
-        sc.close();
         return array;
     }
 
@@ -83,5 +82,34 @@ public class basicas {
             }
             System.out.println();
         }
+    }
+
+    public static boolean verificarFueraDiagonal(int[][] array) {
+        // Validar si la matriz no es nula ni está vacía
+        if (array == null || array.length == 0) {
+            return false;
+        }
+
+        int numFilas = array.length;
+
+        // 1. Comprobar si es cuadrada
+        for (int i = 0; i < numFilas; i++) {
+            if (array[i] == null || array[i].length != numFilas) {
+                return false; // Si alguna fila no coincide con 'n', no es cuadrada
+            }
+        }
+
+        // 2. Recorrer la matriz para verificar los elementos fuera de la diagonal
+        for (int k = 0; k < numFilas; k++) {
+            for (int k2 = 0; k2 < numFilas-1; k2++) {
+                if (k != k2) {
+                    if (array[k][k2] != 0) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
     }
 }
